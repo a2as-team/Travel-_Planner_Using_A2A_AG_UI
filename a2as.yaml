@@ -1,0 +1,395 @@
+manifest:
+  version: "0.1.3"
+  schema: https://a2as.org/cert/schema
+  subject:
+    name: plaban1981/travel-_planner_using_a2a_ag_ui
+    source: https://github.com/plaban1981/travel-_planner_using_a2a_ag_ui
+    branch: main
+    commit: "506e0d77"
+    scope: [travel_planning_system/ag_ui_travel_server.py, travel_planning_system/car_rental_agent_langgraph/app/agent.py,
+      travel_planning_system/car_rental_agent_langgraph/app/simple_car_agent.py, travel_planning_system/car_rental_agent_langgraph/debug_env.py,
+      travel_planning_system/car_rental_agent_langgraph/simple_car_agent.py, travel_planning_system/hotel_booking_agent_crewai/simple_hotel_agent.py,
+      travel_planning_system/hotel_booking_agent_crewai/simple_hotel_agent_with_logging.py, travel_planning_system/streamlit_travel_app.py,
+      travel_planning_system/travel_planner_agent_adk/simple_a2a_agent.py, travel_planning_system/travel_planner_agent_adk/simple_executor.py,
+      travel_planning_system/travel_planner_agent_adk/simple_executor_with_logging.py, travel_planning_system/travel_planner_agent_adk/simple_travel_planner.py,
+      travel_planning_system/travel_planner_agent_adk/travel_planner/agent.py, travel_planning_system/travel_planner_agent_adk/travel_planner/remote_agent_connection.py]
+  issued:
+    by: A2AS.org
+    at: '2026-02-11T16:53:42Z'
+    url: https://a2as.org/certified/agents/plaban1981/travel-_planner_using_a2a_ag_ui
+  signatures:
+    digest: sha256:kHD7T_O01pp9t5r_qKpLxNpQZbk8kaK7GLjwvEvBdBk
+    key: ed25519:2XYrhDj8gELOBN4zI5CCHQ_IOIAjYEwotrTy0MyCdro
+    sig: ed25519:LBk5KwZBPNtZkyLtSUTXZyHT9Uc4RC1spPyhf4zEyo-Pk02LbC--m2b6R4rNvHoBfQPZk11IoFWmcG5Uh0GZCQ
+
+agents:
+  agent.create_agent:
+    type: factory
+    models: [llama-3.3-70b-versatile]
+    params:
+      name: Travel_Planner_Agent
+      instruction: self.root_instruction
+      description: This Travel Planner agent orchestrates travel planning and booking tasks.
+      function: create_agent
+
+models:
+  llama-3.3-70b-versatile:
+    type: literal
+    agents: [agent.create_agent]
+    params:
+      alias: [groq/llama-3.3-70b-versatile]
+
+imports:
+  A2ACardResolver: a2a.client.A2ACardResolver
+  A2AClient: a2a.client.A2AClient
+  ag_ui_travel_server: ag_ui_travel_server.ag_ui_travel_server
+  Agent: google.adk.Agent
+  AgentCard: a2a.types.AgentCard
+  AIMessage: langchain_core.messages.AIMessage
+  Any: typing.Any
+  app: simple_executor.app
+  asynccontextmanager: contextlib.asynccontextmanager
+  asyncio: asyncio
+  AsyncIterable: collections.abc.AsyncIterable
+  BaseModel: pydantic.BaseModel
+  CarRentalAgent: agent.CarRentalAgent
+  ChatGroq: langchain_groq.ChatGroq
+  CORSMiddleware: fastapi.middleware.cors.CORSMiddleware
+  create_react_agent: langgraph.prebuilt.chat_agent_executor.create_react_agent
+  date: datetime.date
+  datetime: datetime.datetime
+  Dict: typing.Dict
+  FastAPI: fastapi.FastAPI
+  Field: pydantic.Field
+  get_car_rental_agent: simple_car_agent.get_car_rental_agent
+  get_hotel_booking_agent: simple_hotel_agent.get_hotel_booking_agent
+  get_logger: logging_config.get_logger
+  HotelBookingAgent: agent.HotelBookingAgent
+  HTMLResponse: fastapi.responses.HTMLResponse
+  HTTPException: fastapi.HTTPException
+  HttpUrl: pydantic.HttpUrl
+  httpx: httpx
+  initialize_agent: simple_a2a_agent.initialize_agent
+  InMemoryArtifactService: google.adk.artifacts.InMemoryArtifactService
+  InMemoryMemoryService: google.adk.memory.in_memory_memory_service.InMemoryMemoryService
+  InMemorySessionService: google.adk.sessions.InMemorySessionService
+  json: json
+  List: typing.List
+  LiteLlm: google.adk.models.lite_llm.LiteLlm
+  Literal: typing.Literal
+  load_dotenv: dotenv.load_dotenv
+  logging: logging
+  MemorySaver: langgraph.checkpoint.memory.MemorySaver
+  Message: a2a.types.Message
+  MessageSendParams: a2a.types.MessageSendParams
+  nest_asyncio: nest_asyncio
+  Optional: typing.Optional
+  os: os
+  Path: pathlib.Path
+  re: re
+  ReadonlyContext: google.adk.agents.readonly_context.ReadonlyContext
+  RemoteAgentConnections: remote_agent_connection.RemoteAgentConnections
+  Request: fastapi.Request
+  requests: requests
+  root_agent: agent.root_agent
+  RunnableConfig: langchain_core.runnables.RunnableConfig
+  Runner: google.adk.runners.Runner
+  SendMessageRequest: a2a.types.SendMessageRequest
+  SendMessageResponse: a2a.types.SendMessageResponse
+  SendMessageSuccessResponse: a2a.types.SendMessageSuccessResponse
+  settings: ag_ui_travel_server.settings
+  SimpleA2ATravelPlanner: simple_a2a_agent.SimpleA2ATravelPlanner
+  SimpleTravelPlanner: simple_travel_planner.SimpleTravelPlanner
+  st: streamlit
+  subprocess: subprocess
+  sys: sys
+  Task: a2a.types.Task
+  TaskArtifact: a2a.types.TaskArtifact
+  TaskArtifactPart: a2a.types.TaskArtifactPart
+  time: time
+  timedelta: datetime.timedelta
+  tool: langchain_core.tools.tool
+  ToolContext: google.adk.tools.tool_context.ToolContext
+  ToolMessage: langchain_core.messages.ToolMessage
+  trace_agent_communication: logging_config.trace_agent_communication
+  trace_llm_call: logging_config.trace_llm_call
+  TraceContext: logging_config.TraceContext
+  TravelPlannerAgent: travel_planner.agent.TravelPlannerAgent
+  types: google.genai.types
+  uuid: uuid
+  uvicorn: uvicorn
+  WebSocket: fastapi.WebSocket
+  WebSocketDisconnect: fastapi.WebSocketDisconnect
+
+functions:
+  __init__:
+    type: sync
+    module: travel_planning_system.car_rental_agent_langgraph.simple_car_agent
+    args: [self]
+  _async_init_components:
+    type: async
+    module: travel_planning_system.travel_planner_agent_adk.travel_planner.agent
+    args: [self, remote_agent_addresses]
+  _async_main:
+    type: async
+    module: travel_planning_system.travel_planner_agent_adk.travel_planner.agent
+  _get_initialized_travel_planner_agent_sync:
+    type: sync
+    module: travel_planning_system.travel_planner_agent_adk.travel_planner.agent
+  _log_trace:
+    type: sync
+    module: travel_planning_system.car_rental_agent_langgraph.simple_car_agent
+    args: [self, operation, details]
+  a2a_message:
+    type: async
+    module: travel_planning_system.car_rental_agent_langgraph.a2a_car_executor
+    args: [request]
+  ask_car_rental_agent:
+    type: sync
+    module: travel_planning_system.streamlit_travel_app
+    args: [self, query]
+  ask_hotel_agent:
+    type: sync
+    module: travel_planning_system.streamlit_travel_app
+    args: [self, query]
+  book_car_rental:
+    type: sync
+    module: travel_planning_system.car_rental_agent_langgraph.simple_car_agent
+    args: [self, car_rental_name, check_in, check_out, vehicle_type]
+    params:
+      returns: str
+  book_hotel:
+    type: sync
+    module: travel_planning_system.hotel_booking_agent_crewai.simple_hotel_agent_with_logging
+    args: [self, hotel_name, check_in, check_out, guests]
+    params:
+      returns: str
+  chat:
+    type: async
+    module: travel_planning_system.car_rental_agent_langgraph.a2a_car_executor
+    args: [request]
+  check_agent_status:
+    type: sync
+    module: travel_planning_system.streamlit_travel_app
+    args: [self]
+  check_agents:
+    type: async
+    module: travel_planning_system.travel_planner_agent_adk.simple_a2a_executor
+  check_env_variables:
+    type: sync
+    module: travel_planning_system.car_rental_agent_langgraph.debug_env
+  coordinate_travel_planning:
+    type: async
+    module: travel_planning_system.ag_ui_travel_server
+    args: [self, travel_request]
+    params:
+      returns: Dict
+  create:
+    type: async
+    module: travel_planning_system.travel_planner_agent_adk.travel_planner.agent
+    args: [cls, remote_agent_addresses]
+  create_agent:
+    type: sync
+    module: travel_planning_system.travel_planner_agent_adk.travel_planner.agent
+    args: [self]
+    params:
+      returns: Agent
+  create_travel_itinerary:
+    type: async
+    module: travel_planning_system.travel_planner_agent_adk.travel_planner.agent
+    args: [self, destination, dates, flights, hotels, car_rentals, tool_context]
+  direct_agent_communication:
+    type: async
+    module: travel_planning_system.ag_ui_travel_server
+    args: [self, travel_request]
+    params:
+      returns: Dict
+  display_options:
+    type: sync
+    module: travel_planning_system.streamlit_travel_app
+    args: [title, options_json, option_type]
+  ensure_log_file:
+    type: sync
+    module: travel_planning_system.travel_planner_agent_adk.simple_a2a_agent
+    args: [self]
+  extract_car_options:
+    type: sync
+    module: travel_planning_system.streamlit_travel_app
+    args: [car_response]
+  extract_destination:
+    type: sync
+    module: travel_planning_system.travel_planner_agent_adk.simple_travel_planner
+    args: [self, query]
+  get_agent_card:
+    type: async
+    module: travel_planning_system.car_rental_agent_langgraph.a2a_car_executor
+  get_agent_response:
+    type: sync
+    module: travel_planning_system.car_rental_agent_langgraph.app.agent
+    args: [self, config]
+  get_car_rental_agent:
+    type: sync
+    module: travel_planning_system.car_rental_agent_langgraph.simple_car_agent
+  get_hotel_booking_agent:
+    type: sync
+    module: travel_planning_system.hotel_booking_agent_crewai.simple_hotel_agent_with_logging
+  get_request_history:
+    type: async
+    module: travel_planning_system.ag_ui_travel_server
+  get_system_status:
+    type: async
+    module: travel_planning_system.ag_ui_travel_server
+  health_check:
+    type: async
+    module: travel_planning_system.car_rental_agent_langgraph.a2a_car_executor
+  initialize_agent:
+    type: async
+    module: travel_planning_system.travel_planner_agent_adk.simple_a2a_agent
+  invoke:
+    type: sync
+    module: travel_planning_system.car_rental_agent_langgraph.app.agent
+    args: [self, query, context_id]
+  lifespan:
+    type: async
+    module: travel_planning_system.travel_planner_agent_adk.simple_a2a_executor
+    args: [app]
+  log_agent_communication:
+    type: sync
+    module: travel_planning_system.travel_planner_agent_adk.simple_a2a_agent
+    args: [self, session_id, agent_name, request, response, status]
+  main:
+    type: sync
+    module: travel_planning_system.streamlit_travel_app
+  plan_trip:
+    type: sync
+    module: travel_planning_system.streamlit_travel_app
+    args: [self, destination, check_in, check_out, budget, guests, car_needed]
+  print_usage_instructions:
+    type: sync
+    module: travel_planning_system.start_ag_ui_server
+  process_request:
+    type: sync
+    module: travel_planning_system.car_rental_agent_langgraph.simple_car_agent
+    args: [self, message]
+    params:
+      returns: str
+  root:
+    type: async
+    module: travel_planning_system.car_rental_agent_langgraph.a2a_car_executor
+  root_instruction:
+    type: sync
+    module: travel_planning_system.travel_planner_agent_adk.travel_planner.agent
+    args: [self, context]
+    params:
+      returns: str
+  search_car_rentals:
+    type: sync
+    module: travel_planning_system.car_rental_agent_langgraph.simple_car_agent
+    args: [self, location, check_in, check_out, vehicle_type]
+    params:
+      returns: str
+  search_destinations:
+    type: async
+    module: travel_planning_system.travel_planner_agent_adk.travel_planner.agent
+    args: [self, destination, tool_context]
+  search_flights:
+    type: async
+    module: travel_planning_system.travel_planner_agent_adk.travel_planner.agent
+    args: [self, origin, destination, date, tool_context]
+  search_hotels:
+    type: sync
+    module: travel_planning_system.hotel_booking_agent_crewai.simple_hotel_agent_with_logging
+    args: [self, location, check_in, check_out, budget]
+    params:
+      returns: str
+  send_a2a_message:
+    type: async
+    module: travel_planning_system.travel_planner_agent_adk.simple_a2a_agent
+    args: [self, agent_url, message]
+    params:
+      returns: Dict
+  send_message:
+    type: async
+    module: travel_planning_system.hotel_booking_agent_crewai.agent_executor
+    args: [request]
+    params:
+      returns: SendMessageResponse
+  setup_middleware:
+    type: sync
+    module: travel_planning_system.ag_ui_travel_server
+    args: [self]
+  setup_routes:
+    type: sync
+    module: travel_planning_system.ag_ui_travel_server
+    args: [self]
+  start_ag_ui_server:
+    type: sync
+    module: travel_planning_system.start_ag_ui_server
+  startup_event:
+    type: async
+    module: travel_planning_system.travel_planner_agent_adk.simple_executor_with_logging
+  stream:
+    type: async
+    module: travel_planning_system.car_rental_agent_langgraph.app.agent
+    args: [self, query, context_id]
+    params:
+      returns: AsyncIterable[dict]
+  test_groq_connection:
+    type: sync
+    module: travel_planning_system.car_rental_agent_langgraph.debug_env
+  test_travel_planner:
+    type: sync
+    module: travel_planning_system.travel_planner_agent_adk.simple_travel_planner
+  websocket_endpoint:
+    type: async
+    module: travel_planning_system.ag_ui_travel_server
+    args: [websocket]
+
+variables:
+  GROQ_API_KEY:
+    type: env
+    params:
+      caller: [os.getenv, ChatGroq]
+      path: [travel_planning_system.ag_ui_travel_server, travel_planning_system.travel_planner_agent_adk.travel_planner.agent,
+        travel_planning_system.car_rental_agent_langgraph.app.simple_car_agent, travel_planning_system.hotel_booking_agent_crewai.simple_hotel_agent,
+        travel_planning_system.hotel_booking_agent_crewai.simple_hotel_agent_with_logging, travel_planning_system.car_rental_agent_langgraph.debug_env,
+        travel_planning_system.travel_planner_agent_adk.simple_travel_planner, travel_planning_system.streamlit_travel_app,
+        travel_planning_system.car_rental_agent_langgraph.app.agent, travel_planning_system.car_rental_agent_langgraph.simple_car_agent]
+  SERPER_API_KEY:
+    type: env
+    params:
+      caller: [os.getenv]
+      path: [travel_planning_system.car_rental_agent_langgraph.app.simple_car_agent, travel_planning_system.hotel_booking_agent_crewai.simple_hotel_agent,
+        travel_planning_system.hotel_booking_agent_crewai.simple_hotel_agent_with_logging, travel_planning_system.car_rental_agent_langgraph.debug_env,
+        travel_planning_system.car_rental_agent_langgraph.app.agent, travel_planning_system.car_rental_agent_langgraph.simple_car_agent]
+  var:
+    type: env
+    params:
+      caller: [os.getenv]
+      path: [travel_planning_system.start_ag_ui_server]
+
+files:
+  .env:
+    type: literal
+    actions: [read]
+    params:
+      caller: [check_env_variables, open]
+
+networks:
+  google.serper.dev:
+    type: api
+    actions: [POST]
+    urls: [/search]
+    protocols: [https]
+    ports: ["443"]
+    params:
+      caller: [search_flights, search_destinations, search_car_rentals]
+  localhost:
+    type: api
+    actions: [GET]
+    urls: [/]
+    protocols: [http]
+    ports: ["10002", "10003"]
+    params:
+      caller: [get_agent_card]
+      links: [url]
